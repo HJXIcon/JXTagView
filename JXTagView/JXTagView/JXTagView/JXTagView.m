@@ -18,29 +18,48 @@
 
 @implementation JXTagView
 
+- (void)setShowDelete:(BOOL)showDelete{
+    _showDelete = showDelete;
+    
+    [self updateTags];
+}
+
 - (void)setTagsFrame:(JXTagFrame *)tagsFrame
 {
     _tagsFrame = tagsFrame;
     
-    for (NSInteger i = 0; i < tagsFrame.tagsArray.count; i++) {
+    [self addTags];
+}
+
+- (void)updateTags{
+    
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    [self addTags];
+}
+
+
+- (void)addTags{
+    
+    for (NSInteger i = 0; i < self.tagsFrame.tagsArray.count; i++) {
         
         CGFloat deleteWH = 15;
         
         UIView *bgView = [[UIView alloc]init];
-        CGRect rect = CGRectFromString(tagsFrame.tagsFrames[i]);
+        CGRect rect = CGRectFromString(self.tagsFrame.tagsFrames[i]);
         rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + deleteWH, rect.size.height + deleteWH);
         bgView.frame = rect;
         [self addSubview:bgView];
         
         
         UIButton *tagsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [tagsBtn setTitle:tagsFrame.tagsArray[i] forState:UIControlStateNormal];
+        [tagsBtn setTitle:self.tagsFrame.tagsArray[i] forState:UIControlStateNormal];
         [tagsBtn setTitleColor:self.normalColor ? self.normalColor : [UIColor blackColor] forState:UIControlStateNormal];
         tagsBtn.titleLabel.font =  self.font ? self.font : TagsTitleFont;
         
         [tagsBtn setTitleColor:self.selectColor ? self.selectColor : [UIColor whiteColor] forState:UIControlStateSelected];
         
-        tagsBtn.backgroundColor = self.bgColor ? self.bgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
+        tagsBtn.backgroundColor = self.normalBgColor ? self.normalBgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
         
         tagsBtn.layer.borderWidth = 1;
         tagsBtn.layer.borderColor = self.border_color ? self.border_color.CGColor : [UIColor lightGrayColor].CGColor;
@@ -50,25 +69,26 @@
         [tagsBtn addTarget:self action:@selector(tagClick:) forControlEvents:UIControlEventTouchUpInside];
         tagsBtn.tag = i;
         
-//        tagsBtn.frame = CGRectFromString(tagsFrame.tagsFrames[i]);
-    
         tagsBtn.frame = CGRectMake(0, 0, bgView.bounds.size.width - 10, bgView.bounds.size.height - 10);
         [bgView addSubview:tagsBtn];
         
         
         /// 删除按钮
-        
-        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteBtn.frame = CGRectMake(tagsBtn.bounds.size.width - deleteWH * 0.5, -deleteWH * 0.5, deleteWH, deleteWH);
-        [deleteBtn setImage:[UIImage imageNamed:@"yuan"] forState:UIControlStateNormal];
-        deleteBtn.tag = 100 + i;
-        [deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [bgView addSubview:deleteBtn];
+        if (self.showDelete) {
+            UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            deleteBtn.frame = CGRectMake(tagsBtn.bounds.size.width - deleteWH * 0.7, -deleteWH * 0.3, deleteWH, deleteWH);
+            [deleteBtn setImage:[UIImage imageNamed:@"yuan"] forState:UIControlStateNormal];
+            deleteBtn.tag = 100 + i;
+            [deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [bgView addSubview:deleteBtn];
+        }
     }
     
-    
 }
+
+
+
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -88,13 +108,14 @@
     
     if (_selectBtn.tag == button.tag && _selectBtn) {
         _selectBtn.selected = NO;
-        _selectBtn.backgroundColor = self.bgColor ? self.bgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
+        _selectBtn.backgroundColor = self.normalBgColor ? self.normalBgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
         _selectBtn = nil;
         return;
     }
     
     _selectBtn.selected = NO;
-    _selectBtn.backgroundColor = self.bgColor ? self.bgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
+    _selectBtn.backgroundColor = self.normalBgColor ? self.normalBgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
+    button.backgroundColor = self.selectBgColor ? self.selectBgColor : [UIColor colorWithRed:240 / 255.0 green:240 / 255.0 blue:240 / 255.0 alpha:1];
     
     button.selected = YES;
     

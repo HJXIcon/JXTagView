@@ -15,6 +15,7 @@ static CGFloat const tagHeight = 28;
 
 @implementation JXTagFrame
 
+
 - (id)init
 {
     self = [super init];
@@ -30,6 +31,9 @@ static CGFloat const tagHeight = 28;
 - (void)setTagsArray:(NSArray *)tagsArray
 {
     _tagsArray = tagsArray;
+    
+    _tagsFrames = nil;
+    _tagsFrames = [NSMutableArray array];
     
     CGFloat btnX = _tagsMargin;
     CGFloat btnW = 0;

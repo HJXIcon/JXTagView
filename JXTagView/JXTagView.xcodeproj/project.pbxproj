@@ -15,6 +15,7 @@
 		041909301F19C19D00E062E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419092E1F19C19D00E062E7 /* LaunchScreen.storyboard */; };
 		0419093C1F19C1C500E062E7 /* JXTagFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 041909391F19C1C500E062E7 /* JXTagFrame.m */; };
 		0419093D1F19C1C500E062E7 /* JXTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419093B1F19C1C500E062E7 /* JXTagView.m */; };
+		0419093F1F19F5E200E062E7 /* JXTagView.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0419093E1F19F5E200E062E7 /* JXTagView.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		041909391F19C1C500E062E7 /* JXTagFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXTagFrame.m; sourceTree = "<group>"; };
 		0419093A1F19C1C500E062E7 /* JXTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXTagView.h; sourceTree = "<group>"; };
 		0419093B1F19C1C500E062E7 /* JXTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXTagView.m; sourceTree = "<group>"; };
+		0419093E1F19F5E200E062E7 /* JXTagView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JXTagView.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		0419091F1F19C19D00E062E7 /* JXTagView */ = {
 			isa = PBXGroup;
 			children = (
+				0419093E1F19F5E200E062E7 /* JXTagView.gif */,
 				041909371F19C1C500E062E7 /* JXTagView */,
 				041909231F19C19D00E062E7 /* AppDelegate.h */,
 				041909241F19C19D00E062E7 /* AppDelegate.m */,
@@ -157,6 +160,7 @@
 			files = (
 				041909301F19C19D00E062E7 /* LaunchScreen.storyboard in Resources */,
 				0419092D1F19C19D00E062E7 /* Assets.xcassets in Resources */,
+				0419093F1F19F5E200E062E7 /* JXTagView.gif in Resources */,
 				0419092B1F19C19D00E062E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +333,7 @@
 				041909361F19C19D00E062E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

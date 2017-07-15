@@ -19,7 +19,9 @@
 
 ////// ----------- color ------------ //////
 /** 背景颜色*/
-@property (nonatomic, strong)UIColor *bgColor;
+@property (nonatomic, strong)UIColor *normalBgColor;
+/** 选中背景颜色*/
+@property (nonatomic, strong)UIColor *selectBgColor;
 /** 选中颜色*/
 @property (nonatomic, strong)UIColor *selectColor;
 /** 字体颜色*/
@@ -34,5 +36,6 @@
 /** 删除按钮*/
 @property (nonatomic, assign)BOOL showDelete;
 
+- (void)updateTags;
 
 @end

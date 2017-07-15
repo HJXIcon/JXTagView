@@ -26,14 +26,15 @@
     self.tagView.frame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height * 0.4);
     
     
-    JXTagFrame *tagFrame = [[JXTagFrame alloc]init];
+    __block JXTagFrame *tagFrame = [[JXTagFrame alloc]init];
     
     NSMutableArray *tagsArray = [NSMutableArray arrayWithArray:@[@"带我哈I",@"的博帕尔后怕封号",@"的家具欧派金额",@"得拿的偶奇偶发金额哦",@"的奋斗",@"德芙",@"到金额大二",@"的厚爱的",@"德比"]];
     
-    
     tagFrame.tagsArray = tagsArray;
-    
     self.tagView.tagsFrame = tagFrame;
+    
+    self.tagView.showDelete = YES;
+    self.tagView.selectBgColor = [UIColor redColor];
     
     
     __weak typeof(self) weakSelf = self;
@@ -43,7 +44,11 @@
     }];
     
     [self.tagView setDeleteIndexBlock:^(NSInteger index) {
-
+        
+        [tagsArray removeObjectAtIndex:index];
+        tagFrame.tagsArray = tagsArray;
+        weakSelf.tagView.tagsFrame = tagFrame;
+        [weakSelf.tagView updateTags];
                 
     }];
     
